@@ -1,0 +1,34 @@
+{
+  "name": "twitchcustomrewardid",
+  "version": "1.0.0",
+  "description": "Find the Custom Reward ID of Twitch Chat Points Rewards",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instafluff/TwitchCustomRewardID.git"
+  },
+  "keywords": [
+    "Instafluff",
+    "Twitch",
+    "Chat",
+    "Points",
+    "Custom",
+    "Reward",
+    "ID",
+    "Find",
+    "Channel",
+    "Loyalty"
+  ],
+  "author": "Instafluff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/instafluff/TwitchCustomRewardID/issues"
+  },
+  "homepage": "https://github.com/instafluff/TwitchCustomRewardID#readme",
+  "dependencies": {
+    "webwebweb": "^1.1.8"
+  }
+}

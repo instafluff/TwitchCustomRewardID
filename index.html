@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Twitch Custom Reward ID Finder</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="jumbotron">
+            <h3 class="display-6"><a href="https://twitch.tv/instafluff">Instafluff's</a> Twitch Custom Reward ID Finder</h3>
+            <p class="lead">This is a tool to figure out the unique Custom Reward ID for your Twitch Channel Points rewards.</p>
+            <hr class="my-4">
+            <div id="page-link-alert" class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Oops! I need to know your Twitch channel first.</h4>
+              Add "?channel=YOURTWITCHCHANNEL" to this page link, like this: <a id="page-link" href="?channel=YOURTWITCHCHANNEL"></a>
+            </div>
+            <label for="reward-id">Output:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Last Used Reward ID</span>
+              </div>
+              <input type="text" class="form-control" id="reward-id" aria-describedby="basic-addon3">
+            </div>
+            <label for="chat-message">Chat:</label>
+            <blockquote class="blockquote">
+              <p id="chat-message" class="text-muted"></p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="web/comfy.min.js"></script>
+    <script>
+      const params = new URLSearchParams(location.search);
+      if( params.get( "channel" ) ) {
+        $( "#page-link-alert" ).hide();
+      }
+      $( "#page-link" ).text( window.location.href + "?channel=YOURTWITCHCHANNEL" );
+      ComfyJS.onChat = ( user, message, flags, self, extra ) => {
+        if( flags.customReward ) {
+          $( "#reward-id" ).val( extra.customRewardId );
+        }
+        $( "#chat-message" ).text( message );
+      }
+      ComfyJS.Init( params.get( "channel" ) );
+    </script>
+  </body>
+</html>
